@@ -1,0 +1,45 @@
+[2023-11-22T23:06:06.482+0000] {taskinstance.py:1171} INFO - Dependencies all met for <TaskInstance: test_task.create_materialized manual__2023-11-22T23:06:01.908674+00:00 [queued]>
+[2023-11-22T23:06:06.489+0000] {taskinstance.py:1171} INFO - Dependencies all met for <TaskInstance: test_task.create_materialized manual__2023-11-22T23:06:01.908674+00:00 [queued]>
+[2023-11-22T23:06:06.489+0000] {taskinstance.py:1368} INFO - 
+--------------------------------------------------------------------------------
+[2023-11-22T23:06:06.490+0000] {taskinstance.py:1369} INFO - Starting attempt 1 of 5
+[2023-11-22T23:06:06.490+0000] {taskinstance.py:1370} INFO - 
+--------------------------------------------------------------------------------
+[2023-11-22T23:06:06.502+0000] {taskinstance.py:1389} INFO - Executing <Task(PythonOperator): create_materialized> on 2023-11-22 23:06:01.908674+00:00
+[2023-11-22T23:06:06.506+0000] {standard_task_runner.py:52} INFO - Started process 241 to run task
+[2023-11-22T23:06:06.508+0000] {standard_task_runner.py:79} INFO - Running: ['***', 'tasks', 'run', 'test_task', 'create_materialized', 'manual__2023-11-22T23:06:01.908674+00:00', '--job-id', '215', '--raw', '--subdir', 'DAGS_FOLDER/add_data_dag.py', '--cfg-path', '/tmp/tmpvb2bx8ig', '--error-file', '/tmp/tmprtydtzyd']
+[2023-11-22T23:06:06.509+0000] {standard_task_runner.py:80} INFO - Job 215: Subtask create_materialized
+[2023-11-22T23:06:06.556+0000] {task_command.py:371} INFO - Running <TaskInstance: test_task.create_materialized manual__2023-11-22T23:06:01.908674+00:00 [running]> on host 54bfe75eb29c
+[2023-11-22T23:06:06.613+0000] {taskinstance.py:1583} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=***@example.com
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=test_task
+AIRFLOW_CTX_TASK_ID=create_materialized
+AIRFLOW_CTX_EXECUTION_DATE=2023-11-22T23:06:01.908674+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2023-11-22T23:06:01.908674+00:00
+[2023-11-22T23:06:06.618+0000] {log.py:128} INFO - select pg_catalog.version()
+[2023-11-22T23:06:06.619+0000] {log.py:128} INFO - [raw sql] {}
+[2023-11-22T23:06:06.619+0000] {log.py:128} INFO - select current_schema()
+[2023-11-22T23:06:06.620+0000] {log.py:128} INFO - [raw sql] {}
+[2023-11-22T23:06:06.620+0000] {log.py:128} INFO - show standard_conforming_strings
+[2023-11-22T23:06:06.620+0000] {log.py:128} INFO - [raw sql] {}
+[2023-11-22T23:06:06.621+0000] {log.py:128} INFO - BEGIN (implicit)
+[2023-11-22T23:06:06.621+0000] {log.py:128} INFO - 
+                CREATE MATERIALIZED VIEW IF NOT EXISTS test_1 AS
+                SELECT w.email AS visitor_email,
+                SUM(t.price) AS total_transactions
+                FROM webinar w
+                JOIN users u ON w.email = u.email
+                JOIN transactions t ON u.user_id = t.user_id
+                WHERE u.date_registration > '2016-04-01'
+                GROUP BY w.email;
+
+            
+[2023-11-22T23:06:06.621+0000] {log.py:128} INFO - [generated in 0.00029s] {}
+[2023-11-22T23:06:06.627+0000] {log.py:128} INFO - COMMIT
+[2023-11-22T23:06:06.629+0000] {add_data.py:41} INFO - Материализованное представление успешно создано.
+[2023-11-22T23:06:06.629+0000] {python.py:173} INFO - Done. Returned value was: None
+[2023-11-22T23:06:06.640+0000] {taskinstance.py:1412} INFO - Marking task as SUCCESS. dag_id=test_task, task_id=create_materialized, execution_date=20231122T230601, start_date=20231122T230606, end_date=20231122T230606
+[2023-11-22T23:06:06.681+0000] {local_task_job.py:156} INFO - Task exited with return code 0
+[2023-11-22T23:06:06.714+0000] {local_task_job.py:279} INFO - 1 downstream tasks scheduled from follow-on schedule check
